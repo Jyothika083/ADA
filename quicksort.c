@@ -66,7 +66,7 @@ void main()
     ts=(float)(et-st)/CLOCKS_PER_SEC;
     if(n<=20)
     {
-    	printf("\nafter sorting using mergesort\n");
+    	printf("\nafter sorting using quicksort\n");
         print(arr,n);
 	}
    
