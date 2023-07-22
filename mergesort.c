@@ -1,7 +1,10 @@
 #include<stdio.h>
+#include<time.h>
+#include<stdlib.h>
 void merge(int arr[],int l,int r,int m)
 {
     int i,j,k;
+
     int n1=m-l+1;
     int n2=r-m;
     int left[n1], right[n2];
@@ -65,19 +68,35 @@ void print(int arr[],int n)
 
 void main()
 {
-    int arr[30],n,i;
+    int arr[200000],n,i;
+    clock_t st,et;
+    float ts;
     printf("Enter the size of the array\n");
     scanf("%d",&n);
-    printf("enter the elements of the array\n");
     for(i=0;i<n;i++)
     {
-        scanf("%d",&arr[i]);
+        arr[i]=rand();
     }
-    printf("before sorting \n");
-    print(arr,n);
+    if(n<=20)
+    {
+    	printf("before sorting \n");
+        print(arr,n);
+	}
+   
+    st=clock();
+  
     mergesort(arr,0,n-1);
-    printf("\nafter sorting using mergesort\n");
-    print(arr,n);
+
+    et=clock();
+    ts=(float)(et-st)/CLOCKS_PER_SEC;
+    if(n<=20)
+    {
+    	printf("\nafter sorting using mergesort\n");
+        print(arr,n);
+	}
+   
+    //print(arr,n);
+    printf("\nTime taken \t %f ",ts);
 
 
 }
