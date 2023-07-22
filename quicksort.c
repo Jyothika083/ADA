@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<time.h>
+#include<stdlib.h>
 void swap(int *a,int *b)
 {
     int temp;
@@ -23,19 +24,6 @@ int partition(int arr[],int l,int r)
     swap(&arr[i+1],&arr[r]);
     return (i+1);
 
-    //descending order
-    // int pivot=arr[l];
-    // int i=l,j=r+1;
-    // for(i=l;i<r;i++)
-    // {
-    //     if(arr[i]>pivot)
-    //     {
-    //         j--;
-    //         swap(&arr[i],&arr[j]);
-    //     }
-    // }
-    // swap(&arr[j],&arr[l]);
-    // return (j);
 }
 void quicksort(int arr[],int l,int r)
 {
@@ -57,19 +45,32 @@ void print(int arr[],int n)
 }
 void main()
 {
-    int arr[30],n,i;
+    int arr[200000],n,i;
+    clock_t st,et;
+    float ts;
     printf("Enter the size of the array\n");
     scanf("%d",&n);
-    printf("enter the elements of the array\n");
     for(i=0;i<n;i++)
     {
-        scanf("%d",&arr[i]);
+        arr[i]=rand();
     }
-    printf("before sorting \n");
-    print(arr,n);
+    if(n<=20)
+    {
+    	printf("before sorting \n");
+        print(arr,n);
+	}
+    st=clock();
+    //print(arr,n);
     quicksort(arr,0,n-1);
-    printf("\nafter sorting using quicksort\n");
-    print(arr,n);
+    et=clock();
+    ts=(float)(et-st)/CLOCKS_PER_SEC;
+    if(n<=20)
+    {
+    	printf("\nafter sorting using mergesort\n");
+        print(arr,n);
+	}
+   
+    printf("\nTime taken \t %f ",ts);
 
 
 }
