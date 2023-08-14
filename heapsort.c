@@ -1,4 +1,6 @@
 #include<stdio.h>
+#include<time.h>
+#include<stdlib.h>
 void swap(int *a,int *b)
 {
     int temp=*a;
@@ -7,7 +9,7 @@ void swap(int *a,int *b)
 }
 void heapify(int a[],int n,int i)
 {
-    int largest=i,l=2*i,r=2*i+1;
+    int largest=i,l=2*i+1,r=2*i+2;
     while(l<n && a[l]>a[largest])
     {
         largest=l;
@@ -26,7 +28,7 @@ void heapify(int a[],int n,int i)
 void print(int a[],int n)
 {
     int i;
-    for(i=1;i<=n;i++)
+    for(i=0;i<n;i++)
     {
         printf("%d\t",a[i]);
     }
@@ -36,31 +38,37 @@ void heapsort(int a[],int n)
 {
     int i;
     //create max heap
-    for(i=n/2;i>=1;i--)
+    for(i=n/2-1;i>=0;i--)
     {
         heapify(a,n,i);
     }
 
     //sort using deletion
-    for(i=n;i>=1;i--)
+    for(i=n-1;i>=0;i--)
     {
-        swap(&a[1],&a[i]);
-        heapify(a,i,1);
+        swap(&a[0],&a[i]);
+        heapify(a,i,0);
     }
 }
 
 void main()
 {
     int a[20],n,i,j;
+    clock_t st,et;
+    float ts;
     printf("Enter the number of elements\n");
     scanf("%d",&n);
     printf("Enter the elements\n");
-    for(int i=1;i<=n;i++)
+    for(int i=0;i<n;i++)
     {
         scanf("%d",&a[i]);
     }
+    st=clock();
     heapsort(a,n);
+    et=clock();
+    ts=(float)(et-st)/CLOCKS_PER_SEC;
     printf("\nAfter sorting elements are\n");
     print(a,n);
+    printf("\nTime taken \t %f ",ts);
 
 }
