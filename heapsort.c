@@ -58,17 +58,17 @@ void main()
     float ts;
     printf("Enter the number of elements\n");
     scanf("%d",&n);
-    printf("Enter the elements\n");
-    for(int i=0;i<n;i++)
+    for(i=0;i<n;i++)
     {
-        scanf("%d",&a[i]);
+        a[i]=rand();
     }
     st=clock();
     heapsort(a,n);
     et=clock();
     ts=(float)(et-st)/CLOCKS_PER_SEC;
     printf("\nAfter sorting elements are\n");
-    print(a,n);
+    if(n<=20)
+        print(a,n);
     printf("\nTime taken \t %f ",ts);
 
 }
